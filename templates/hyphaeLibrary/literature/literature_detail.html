@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load literature %}
+{% load utils %}
+
+{% block head %}
+    <script type="text/javascript" src="//cdn.plu.mx/widget-summary.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container h-100">
+        <div class="border-sep-list">
+            <span class="border-sep-ele">
+                {{ literature.language }}
+            </span>
+            <span class="border-sep-ele">
+                {% if literature.document.license.public_available %}
+                    PDF available
+                {% else %}
+                    PDF not available
+                {% endif %}
+            </span>
+            <span class="border-sep-ele">
+
+            </span>
+        </div>
+        <div class="d-flex">
+            <div class="w-75">
+                <h1 class="text-size-6 font-weight-bold">{{ literature.title }}</h1>
+                <p>{{ literature.authors_readable }}</p>
+
+                <p class="text-justify">{{ literature.abstract }}</p>
+                <div><small>{{ literature|citation:"APA" }}</small></div>
+            </div>
+            <div class="mx-5 w-25">
+                <div class="mb-4 centered">
+                    <a class="btn btn-pri-m w-100" href="{{ literature.document.file.url }}">Download</a>
+                </div>
+                {% if literature.doi %}
+                    <div>
+                        <a href="https://plu.mx/plum/a/?doi={{ literature.doi }}" class="plumx-summary plum-liberty-theme"></a>
+                    </div>
+                {% endif %}
+                <div class="mb-4 centered">
+                    <a class="btn btn-outline-primary w-100" href="{% url 'library:literature-update' vanity=literature.vanity %}" rel="nofollow">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

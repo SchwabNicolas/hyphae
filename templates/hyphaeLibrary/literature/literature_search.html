@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load utils %}
+
+{% block content %}
+    <div class="container">
+        <div class="medium-padding-container">
+            {% for literature in literature_list %}
+                <div class="literature w-100">
+                    <div>
+                        <a href="{% url 'library:literature-detail' vanity=literature.vanity %}">
+                            {% if literature.file %}<i class="fas fa-file-pdf"></i> {% endif %}{{ literature.title }}
+                        </a>
+                    </div>
+                    <div>
+                        <small>{{ literature.authors_readable|default_if_none:'(unknown)' }}{{ literature.series|default_if_none:''|prefix:' — ' }}{{ literature.year_of_publication|default_if_none:"unknown"|prefix:' — ' }}{{ literature.year_on_publication|default_if_none:""|prefix:" ["|suffix:"]" }}</small>
+                    </div>
+                    <div>{% include 'components/badge_language.html' %} {% include 'components/badge_type.html'%}</div>
+                    {% if literature.abstract %}
+                        <p class="text-ellipsis-l3">{{ literature.abstract|truncatechars:320 }}</p>
+                    {% else %}
+                        <p>No abstract provided.</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

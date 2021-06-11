@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load forms %}
+
+{% block content %}
+<div class="container">
+    <h1>Add name</h1>
+    <form method="post">
+        {% form form %}
+        <br>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+</div>
+{% endblock %}

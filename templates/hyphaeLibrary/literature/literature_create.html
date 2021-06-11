@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Add literature</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group mb-5">
+                <div class="non-field-errors">
+                    {{ form.non_field_errors }}
+                </div>
+
+                <div class="hidden-fields-errors">
+                    {% for hidden_field in form.hidden_fields %}
+                        {{ hidden_field.errors }}
+                        {{ hidden_field }}
+                    {% endfor %}
+                </div>
+
+                {% if form_class == 'BaseLiteratureCreateUpdateForm' %}
+                    {% include 'hyphaeLibrary/literature/forms/base.html' %}
+                {% elif form_class == 'PublicationCreateUpdateForm' %}
+                    {% include 'hyphaeLibrary/literature/forms/article.html' %}
+                {% elif form_class == 'ThesisCreateUpdateForm' %}
+                    {% include 'hyphaeLibrary/literature/forms/thesis.html' %}
+                {% elif form_class == 'BookCreateUpdateForm' %}
+                    {% include 'hyphaeLibrary/literature/forms/book.html' %}
+                {% endif %}
+            </fieldset>
+
+            <fieldset class="form-group">
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary w-25" value="update" name="updateSub">Create</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% load static %}
+{% load forms %}
+
+<div class="card formcard auth-card bg-wt-85 ele-3">
+    <h1 class="card-header">Create an account on Hyphae</h1>
+    <div class="card-body">
+        <form action="{{ form_action }}" method="post" novalidate>
+            {% csrf_token %}
+            <div class="text-danger">
+                {{ form.non_field_errors }}
+            </div>
+            {% form form %}
+            <br>
+            <input type="submit" class="btn btn-pri-m" value="Créer un compte" name="Créer un compte" rel="nofollow">
+        </form>
+    </div>
+    <div class="card-footer">
+        <p class="text-right">Already have an account? <a href="{% url 'auth:login' %}{% if next %}?next={{ next }}{% endif %}" class="btn btn-sm btn-sec-m" rel="nofollow">Log in</a></p>
+    </div>
+</div>

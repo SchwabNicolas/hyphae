@@ -1,0 +1,51 @@
+/*
+Configuration de Bootstrap en CSS.
+ */
+
+@import 'variables';
+
+/* Définition de la palette dans Bootstrap */
+$primary: $primary-main;
+$secondary: $secondary-main;
+
+$danger: $semantics-danger;
+$warning: $semantics-warning;
+$success: $semantics-success;
+$info: $semantics-info;
+
+/* Style des alertes de Bootstrap */
+$alert-bg-level: 0 !default;
+$alert-border-level: 0 !default;
+$alert-color-level: -11 !default;
+
+/* Définition des polices d'écriture dans Bootstrap */
+$font-family-sans-serif: $sans-serif;
+$font-family-monospace: $monospace;
+$font-family-base: $sans-serif;
+
+$enable-responsive-font-sizes: true;
+
+/* Importation de Bootstrap */
+@import "../vendor/node_modules/bootstrap/scss/bootstrap.scss";
+
+/* Personnalisation des éléments */
+.btn-outline-light:hover,
+.btn-outline-light:focus,
+.btn-outline-light:active,
+.btn-outline-light.active,
+.open > .dropdown-toggle.btn-outline-light {
+  color: $primary !important;
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.card-footer p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.card {
+  border-radius: 0 0 !important;
+}

@@ -1,0 +1,37 @@
+{% load widget_tweaks %}
+
+<div class="field mb-3">
+    <div class="text-size-1">
+        {{ doc_form.file.label_tag }}
+    </div>
+    {{ doc_form.file|add_class:"form-control" }}
+</div>
+{% for error in form.file.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+<div class="field mb-3">
+    <div class="text-size-1">
+        {{ doc_form.license.label_tag }}
+    </div>
+    {{ doc_form.license|add_class:"form-control" }}
+</div>
+{% for error in form.license.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+<div class="field mb-3">
+    <div class="text-size-1">
+        {{ doc_form.file_status.label_tag }}
+    </div>
+    {{ doc_form.file_status|add_class:"form-control" }}
+</div>
+{% for error in form.file_status.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+<div class="field mb-3">
+    <div class="form-check-inline">
+        {{ doc_form.delete_first_page.label_tag }} {{ doc_form.delete_first_page }}
+    </div>
+</div>

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Hyphae Library</h1>
+        <h2>{{ literature_count }} publications – {{ documents.total_pages }} pages</h2>
+
+        <div class="d-flex">
+            <form method="post">
+                {% csrf_token %}
+                <label for="searchLiterature">Search</label>
+                <div class="input-group">
+                    <input type="search" class="form-control" id="searchLiterature" name="searchLiterature">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" rel="nofollow"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <nav class="navbar">
+            <ul class="navbar-nav me-auto ">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="addLiteratureDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-plus"></i> Add literature
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="addLiteratureDropdown">
+                        <li>
+                            <a href="{% url 'library:literature-create' %}" class="dropdown-item">Base</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'library:literature-create' %}?type=article" class="dropdown-item">Article</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'library:literature-create' %}?type=thesis" class="dropdown-item">Thesis</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'library:literature-create' %}?type=book" class="dropdown-item">Book</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+{% endblock %}

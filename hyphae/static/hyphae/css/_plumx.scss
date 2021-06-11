@@ -1,0 +1,13 @@
+@import 'variables';
+
+.plum-scopus-theme .PlumX-Summary,
+.plum-liberty-theme .PlumX-Summary,
+.plum-scopus-theme .PlumX-Summary .pps-label,
+.plum-liberty-theme .PlumX-Summary .pps-label
+{
+  font-family: $sans-serif !important;
+}
+
+.plx-plum {
+  display: none;
+}

@@ -1,0 +1,100 @@
+/* Variables */
+@import "variables";
+
+/* Bootstrap configuré */
+@import "custom";
+
+/* Mixins SCSS */
+@import 'mixins';
+
+/* Importe les classes utilitaires */
+@import "utils";
+
+/* Importe les classes utilitaires */
+@import "plumx";
+
+/* Importation de FontAwesome */
+@import "../vendor/node_modules/@fortawesome/fontawesome-free/css/all.css";
+
+body {
+  min-width: fit-content;
+}
+
+.auth-card {
+  min-width: 25rem;
+  max-width: 25vw;
+  margin-left: 5vw;
+  margin-top: 2.5vw;
+}
+
+.auth-card .form-control {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 0;
+
+  &:focus {
+    background-color: transparentize($primary-main, 0.9);
+    box-shadow: none !important;
+    border-bottom: 2px solid $primary-main;
+  }
+}
+
+.form-control {
+  border-radius: 0 0;
+
+  &:focus {
+    background-color: transparentize($primary-main, 0.9);
+    box-shadow: none !important;
+    border-bottom: 2px solid $primary-main;
+  }
+
+  &:invalid {
+    border-left: 4px solid $semantics-danger;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+#profilePicture, #noProfilePicture {
+  z-index: 1100;
+  height: 75px;
+  width: 75px;
+  border-radius: 100px;
+  color: $white;
+  transition: filter 0.25s;
+  margin-left: 1vw;
+  font-size: 7vh;
+
+  &:hover {
+    filter: drop-shadow(0 0 3px white) brightness(105%);
+  }
+}
+
+.detail-pdf {
+  display: block;
+  width: 75%;
+  height: 800px;
+  margin: 0 auto;
+}
+
+/* Profil */
+.profile-pp {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  width: 12vw;
+  border-radius: 100%;
+  color: $white;
+}

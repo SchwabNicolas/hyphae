@@ -1,0 +1,150 @@
+{% load widget_tweaks %}
+
+<div class="field mb-3">
+    <div class="text-size-1">
+        {{ form.title.label_tag }}
+    </div>
+    <div class="input-group">
+        {{ form.title|add_class:"form-control" }}
+    </div>
+</div>
+{% for error in form.title.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+<div class="field mb-3">
+    <div class="text-size-1">
+        {{ form.original_title.label_tag }}
+    </div>
+    <div class="input-group">
+        {{ form.original_title|add_class:"form-control" }}
+    </div>
+</div>
+{% for error in form.original_title.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+<div class="field mb-3">
+    <div class="text-size-1">
+        {{ form.authors.label_tag }}
+    </div>
+    <div class="input-group">
+        {{ form.authors|add_class:"form-control" }}
+    </div>
+</div>
+{% for error in form.authors.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+<div class="field mb-3">
+    <div class="text-size-1">
+        {{ form.university.label_tag }}
+    </div>
+    <div class="input-group">
+        {{ form.university|add_class:"form-control" }}
+    </div>
+</div>
+{% for error in form.authors.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+<div class="field mb-3">
+    <div class="row">
+        <div class="col">
+            {{ form.year_of_publication.label_tag }}
+        </div>
+        <div class="col">
+            {{ form.year_on_publication.label_tag }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form.year_of_publication|add_class:"form-control" }}
+        </div>
+        <div class="col">
+            {{ form.year_on_publication|add_class:"form-control" }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {% for error in form.year_of_publication.errors %}
+                <small class="first_page-text text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div class="col">
+            {% for error in form.year_on_publication.errors %}
+                <small class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="field mb-3">
+    <div class="text-size-1">
+        {{ form.doi.label_tag }}
+    </div>
+    <div class="input-group">
+        {{ form.doi|add_class:"form-control" }}
+    </div>
+</div>
+{% for error in form.doi.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+<div class="field mb-3">
+    <div class="text-size-1">
+        {{ form.abstract.label_tag }}
+    </div>
+    <div class="input-group">
+        {{ form.abstract|add_class:"form-control" }}
+    </div>
+</div>
+{% for error in form.abstract.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+<div class="field mb-3">
+    <div class="text-size-1">
+        {{ form.keywords.label_tag }}
+    </div>
+    <div class="input-group">
+        {{ form.keywords|add_class:"form-control" }}
+    </div>
+</div>
+{% for error in form.keywords.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+<div class="field">
+    <div class="text-size-1">
+        {{ form.taxonomical_novelties.label_tag }}
+    </div>
+    {{ form.taxonomical_novelties|add_class:"form-control" }}
+</div>
+{% for error in form.taxonomical_novelties.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+<div class="field mb-3">
+    <div class="text-size-1">
+        {{ form.language.label_tag }}
+    </div>
+    <div class="input-group">
+        {{ form.language|add_class:"form-control" }}
+    </div>
+</div>
+{% for error in form.language.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+{% include 'hyphaeLibrary/literature/forms/document.html' %}
+
+<div class="field">
+    <div class="text-size-1">
+        {{ form.remarks.label_tag }}
+    </div>
+    {{ form.remarks|add_class:"form-control" }}
+</div>
+{% for error in form.remarks.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
