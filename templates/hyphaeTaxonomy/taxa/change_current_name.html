@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="container">
+        <h1>Add a name</h1>
+        <form class="form" method="post">
+            {{ form.errors }}
+            {% csrf_token %}
+            <fieldset id="currentName">
+                <div class="row mb-2">
+                    <div class="col field">
+                        {{ form.name|add_class:"form-control" }}
+                    </div>
+                    <div class="col field">
+                        {{ form.authors|add_class:"form-control" }}
+                    </div>
+                    <div class="col field">
+                        <div class="input-group">
+                            <span class="input-group-text" id="icn-id-addon">#</span>
+                            {{ form.icn_identifier|add_class:"form-control" }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col field">
+                        {{ form.validity|add_class:"form-control" }}
+                    </div>
+                    <div class="col field">
+                        {{ form.legitimacy|add_class:"form-control" }}
+                    </div>
+                    <div class="col field">
+                        {{ form.nomenclatural_comment|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-4 field mb-2">
+                        {{ form.literature|add_class:"form-control" }}
+                    </div>
+                    <div class="col col-1 field mb-2">
+                        {{ form.volume|add_class:"form-control" }}
+                    </div>
+                    <div class="col col-1 field mb-2">
+                        {{ form.part|add_class:"form-control" }}
+                    </div>
+                    <div class="col col-1 field mb-2">
+                        {{ form.page|add_class:"form-control" }}
+                    </div>
+                    <div class="col field mb-2">
+                        {{ form.year_of_publication|add_class:"form-control" }}
+                    </div>
+                    <div class="col field mb-2">
+                        {{ form.year_on_publication|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="row">
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <small class="form-text text-danger">{{ error }}</small>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+{% endblock %}

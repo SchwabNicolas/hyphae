@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load forms %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block head %}
+    <script src="{% static 'hyphae/js/taxon_create_update.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="non-field-errors">
+                {{ form.non_field_errors }}
+            </div>
+            <div class="hidden-fields-errors">
+                {% for hidden_field in form.hidden_fields %}
+                    {{ hidden_field.errors }}
+                    {{ hidden_field }}
+                {% endfor %}
+            </div>
+
+            <label class="text-size-4 mb-2">File</label>
+            <div class="row mb-2">
+                <div class="col">
+                    {{ form.file|add_class:"form-control" }}
+                </div>
+            </div>
+
+            <label class="text-size-4 mb-2">Legend</label>
+            <div class="row mb-2">
+                <div class="col">
+                    {{ form.legend|add_class:"form-control" }}
+                </div>
+            </div>
+
+            <label class="text-size-4 mb-2">Author</label>
+            <div class="row mb-2">
+                <div class="col">
+                    {{ form.author|add_class:"form-control" }}
+                </div>
+            </div>
+
+            <label class="text-size-4 mb-2">Taxon</label>
+            <div class="row mb-2">
+                <div class="col">
+                    {{ form.taxon|add_class:"form-control" }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load forms %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block head %}
+    <script src="{% static 'hyphae/js/taxon_create_update.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Add a taxon</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="non-field-errors">
+                {{ form.non_field_errors }}
+            </div>
+            <div class="hidden-fields-errors">
+                {% for hidden_field in form.hidden_fields %}
+                    {{ hidden_field.errors }}
+                    {{ hidden_field }}
+                {% endfor %}
+            </div>
+
+            <form class="form">
+                <fieldset id="taxonFieldset">
+                    <label class="text-size-4 mb-2">Rank</label>
+                    <div class="row mb-2">
+                        <div class="col">
+                            {{ form.rank|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <label class="text-size-4 mb-2">Parent</label>
+                    <div class="row mb-2">
+                        <div class="col">
+                            {{ form.parent|add_class:"form-control" }}
+                        </div>
+                    </div>
+                </fieldset>
+
+                <label class="text-size-4 mb-2">Current name</label>
+                <fieldset id="currentName">
+                    <div class="row mb-2">
+                        <div class="col field">
+                            {{ cn_form.name|add_class:"form-control" }}
+                        </div>
+                        <div class="col field">
+                            {{ cn_form.authors|add_class:"form-control" }}
+                        </div>
+                        <div class="col field">
+                            <div class="input-group">
+                                <span class="input-group-text" id="doi-addon">#</span>
+                                {{ cn_form.icn_identifier|add_class:"form-control" }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col field">
+                            {{ cn_form.validity|add_class:"form-control" }}
+                        </div>
+                        <div class="col field">
+                            {{ cn_form.legitimacy|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-4 field mb-2">
+                            {{ cn_form.literature|add_class:"form-control" }}
+                        </div>
+                        <div class="col col-1 field mb-2">
+                            {{ cn_form.volume|add_class:"form-control" }}
+                        </div>
+                        <div class="col col-1 field mb-2">
+                            {{ cn_form.part|add_class:"form-control" }}
+                        </div>
+                        <div class="col col-1 field mb-2">
+                            {{ cn_form.page|add_class:"form-control" }}
+                        </div>
+                        <div class="col field mb-2">
+                            {{ cn_form.year_of_publication|add_class:"form-control" }}
+                        </div>
+                        <div class="col field mb-2">
+                            {{ cn_form.year_on_publication|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for field, errors in cn_form.errors.items %}
+                            {% for error in errors %}
+                                <small class="form-text text-danger">{{ error }}</small>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </fieldset>
+
+                <label class="text-size-4 mb-2 mt-4">Basionym</label>
+                <div class="form-check mb-2">
+                    {{ basionym_form.is_current_name_basionym|add_class:"form-check-input" }}
+                    <label class="form-check-label">Is the current name the basionym?</label>
+                </div>
+                <fieldset id="basionymFieldset" disabled>
+                    <div class="row mb-2">
+                        <div class="col field">
+                            {{ basionym_form.name|add_class:"form-control" }}
+                        </div>
+                        <div class="col field">
+                            {{ basionym_form.authors|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col field">
+                            {{ basionym_form.validity|add_class:"form-control" }}
+                        </div>
+                        <div class="col field">
+                            {{ basionym_form.legitimacy|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-4 field mb-2">
+                            {{ basionym_form.literature|add_class:"form-control" }}
+                        </div>
+                        <div class="col col-1 field mb-2">
+                            {{ basionym_form.volume|add_class:"form-control" }}
+                        </div>
+                        <div class="col col-1 field mb-2">
+                            {{ basionym_form.part|add_class:"form-control" }}
+                        </div>
+                        <div class="col col-1 field mb-2">
+                            {{ basionym_form.page|add_class:"form-control" }}
+                        </div>
+                        <div class="col field mb-2">
+                            {{ basionym_form.year_of_publication|add_class:"form-control" }}
+                        </div>
+                        <div class="col field mb-2">
+                            {{ basionym_form.year_on_publication|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for field, errors in basionym_form.errors.items %}
+                            {% for error in errors %}
+                                <small class="form-text text-danger">{{ error }}</small>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </fieldset>
+
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </form>
+    </div>
+    {{ form.media }}
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% load widget_tweaks %}
+
+<form class="form-inline">
+
+<div class="field mb-2">
+    {{ form.name|add_class:"form-control" }}
+</div>
+{% for error in form.name.errors %}
+    <small class="form-text text-danger">{{ error }}</small>
+{% endfor %}
+
+</form>

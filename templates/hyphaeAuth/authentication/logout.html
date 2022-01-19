@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        body {
+            background-image: url("{% static random_image %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center center;
+            background-size: cover;
+        }
+    </style>
+
+    {% include 'hyphaeAuth/authentication/includes/login_form.html' %}
+{% endblock %}
