@@ -4,7 +4,8 @@
 
 {% block content %}
     <div class="container">
-        <h1>Add a name</h1>
+        <h1>Change current name</h1>
+        <h2>Old name: {{ taxon.current_name }}</h2>
         <form class="form" method="post">
             {{ form.errors }}
             {% csrf_token %}

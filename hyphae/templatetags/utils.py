@@ -23,3 +23,23 @@ def suffix(value, suffix=''):
     if value != '':
         return f'{value}{suffix}'
     return ''
+
+
+@register.tag(name="ifauth")
+def if_auth(parser, token):
+    nodelist = parser.parse(('endifauth',))
+    parser.delete_first_token()
+    return IfAuthNode(nodelist)
+
+
+class IfAuthNode(template.Node):
+    def __init__(self, nodelist):
+        self.nodelist = nodelist
+
+    def render(self, context):
+        request = context['request']
+        if request.user.is_authenticated:
+            output = self.nodelist.render(context)
+        else:
+            output = ''
+        return output

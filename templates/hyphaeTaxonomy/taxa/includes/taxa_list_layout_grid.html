@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static %}
+
+<div class="tax-grid w-100">
+    {% for taxon in children_taxa %}
+        <div class="mb-1 mx-1 tax-card">
+            <a class="w-100" href="{% url 'taxonomy:taxon-detail' slug=taxon.slug layout='grid' %}">
+                {% if taxon.cover_illustration %}
+                    <img src="{{ taxon.cover_illustration.thumbnail.url }}" alt="" class="tax-grid-img">
+                {% else %}
+                    <div class="tax-grid-no-img"></div>
+                {% endif %}
+                <div class="tax-grid-name">{{ taxon.current_name.name }}</div>
+            </a>
+        </div>
+    {% endfor %}
+</div>

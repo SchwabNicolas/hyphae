@@ -1,6 +1,8 @@
 import os
 from io import BytesIO
-from django.forms import ModelForm, Form, BooleanField
+
+from django.db.models import TextField
+from django.forms import ModelForm, Form, BooleanField, TextInput
 from django_cleanup import cleanup
 from pikepdf._qpdf import Pdf
 
@@ -57,6 +59,9 @@ class BaseLiteratureCreateUpdateForm(ModelForm):
             'keywords',
             'remarks',
         ]
+        widgets = {
+            'authors': TextInput()
+        }
 
 
 class PublicationCreateUpdateForm(ModelForm):
@@ -83,6 +88,9 @@ class PublicationCreateUpdateForm(ModelForm):
             'taxonomical_novelties',
             'remarks',
         ]
+        widgets = {
+            'authors': TextInput()
+        }
 
 
 class ThesisCreateUpdateForm(ModelForm):
@@ -102,6 +110,9 @@ class ThesisCreateUpdateForm(ModelForm):
             'taxonomical_novelties',
             'remarks',
         ]
+        widgets = {
+            'authors': TextInput()
+        }
 
 
 class BookCreateUpdateForm(ModelForm):
@@ -126,3 +137,6 @@ class BookCreateUpdateForm(ModelForm):
             'taxonomical_novelties',
             'remarks',
         ]
+        widgets = {
+            'authors': TextInput()
+        }

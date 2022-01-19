@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <h1>Hyphae Library</h1>
-        <h2>{{ literature_count }} publications – {{ documents.total_pages }} pages</h2>
+        <h2>{{ literature_count }} publications – {{ documents.total_pages|default_if_none:"0" }} pages</h2>
 
         <div class="d-flex">
             <form method="post">

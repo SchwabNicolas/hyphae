@@ -28,13 +28,16 @@ CLIENT_DIR = BASE_DIR / 'client'
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True if os.getenv("DEBUG") == "True" else False
+DEBUG = True
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'dal',
+    'dal_select2',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +55,7 @@ INSTALLED_APPS = [
     'polymorphic',
     'rest_framework',
     'django_cleanup.apps.CleanupConfig',
+    'markdownx',
 ]
 
 MIDDLEWARE = [
@@ -88,20 +92,7 @@ WSGI_APPLICATION = 'hyphae.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'OPTIONS': {
-#             'init_command': 'SET default_storage_engine=INNODB',
-#         },
-#         'NAME': os.getenv("DATABASE_NAME"),
-#         'USER': os.getenv("DATABASE_USER"),
-#         'PASSWORD': os.getenv("DATABASE_PASSWORD"),
-#         'TEST': {
-#             'NAME': os.getenv("TEST_DATABASE_NAME")
-#         }
-#     }
-# }
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 DATABASES = {
     'default': {
@@ -167,3 +158,13 @@ AUTHENTICATION_BACKENDS = ['hyphaeAuth.backends.EmailBackend']
 X_FRAME_OPTIONS = 'ALLOWALL'
 
 XS_SHARING_ALLOWED_METHODS = ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE']
+
+if DEBUG:
+    import mimetypes
+
+    mimetypes.add_type("application/javascript", ".js", True)
+
+# Markdown
+MARKDOWNX_MARKDOWN_EXTENSIONS = [
+    'markdown.extensions.extra'
+]

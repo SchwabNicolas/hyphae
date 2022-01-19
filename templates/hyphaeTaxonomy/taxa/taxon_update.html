@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}{{ taxon.current_name }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Update taxon</h1>
+        {{ form.errors }}
+        <form method="post" class="form">
+            {% csrf_token %}
+
+            <fieldset id="taxonFieldset">
+                <label class="text-size-4 mb-2">Rank</label>
+                <div class="row mb-2">
+                    <div class="col">
+                        {{ form.rank|add_class:"form-control" }}
+                    </div>
+                </div>
+                <label class="text-size-4 mb-2">Parent</label>
+                <div class="row mb-2">
+                    <div class="col">
+                        {{ form.parent|add_class:"form-control" }}
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <div class="d-flex justify-content-between">
+                    <button type="submit" value="deleteTaxon" name="deleteTaxon" id=deleteTaxon" class="btn btn-danger">Delete</button>
+                    <button type="submit" value="updateTaxon" name="updateTaxon" id="updateTaxon" class="btn btn-pri-m">Update</button>
+                </div>
+            </fieldset>
+        </form>
+        {{ form.media }}
+    </div>
+{% endblock %}

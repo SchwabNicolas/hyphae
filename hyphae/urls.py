@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
@@ -27,6 +28,7 @@ app_name = 'hyphae'
 
 urlpatterns = [
     path('', include(hyphaeCore.urls, namespace='core')),
+    url(r'^markdownx/', include('markdownx.urls')),
     path('admin/', admin.site.urls),
     path('taxonomy/', include(hyphaeTaxonomy.urls, namespace='taxonomy')),
     path('library/', include(hyphaeLibrary.urls, namespace='library')),
@@ -34,4 +36,4 @@ urlpatterns = [
     path('api/', include('rest_framework.urls')),
 ]
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

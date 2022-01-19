@@ -72,7 +72,8 @@
         {{ form.doi.label_tag }}
     </div>
     <div class="input-group">
-        {{ form.doi|add_class:"form-control" }}
+        <span class="input-group-text" id="doi-addon">https://doi.org/</span>
+        {{ form.doi|add_class:"form-control"|attr:"aria-describedby:doi-addon" }}
     </div>
 </div>
 {% for error in form.doi.errors %}

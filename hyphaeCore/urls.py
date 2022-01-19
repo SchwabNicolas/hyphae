@@ -22,6 +22,6 @@ app_name = 'core'
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
-    path('index/', IndexView.as_view()),
-    path('home/', IndexView.as_view()),
+    path('index/', IndexView.as_view(), name='index'),
+    path('home/', IndexView.as_view(), name='index'),
 ]

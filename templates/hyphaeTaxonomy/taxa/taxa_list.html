@@ -1,9 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    {% comment %}
+        <script type="module" src="{% static 'hyphae/js/treeview.js' %}" crossorigin="anonymous"></script>
+    {% endcomment %}
+{% endblock %}
 
 {% block content %}
+    <div class="container">
+        <h1>Fungi and fungi-like taxa</h1>
 
-    {% for name in names_list %}
-        {{ name }}
-    {% endfor %}
-    
+        <div class="d-flex">
+            <form method="post">
+                {% csrf_token %}
+                <label for="searchTaxa">Search</label>
+                <div class="input-group">
+                    <input type="search" class="form-control" id="searchTaxa" name="searchTaxa">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" rel="nofollow"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <h2>Kingdoms</h2>
+        <div id="treeview">
+            {% for taxon in taxa %}
+                <div class="mb-1 tree-node">
+                    <a class="btn" href="{% url 'taxonomy:taxon-detail' slug=taxon.slug %}">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                    <b><i>{{ taxon.current_name.name }}</i></b> {{ taxon.current_name.authors }} ({{ taxon.current_name.year_of_publication }})
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

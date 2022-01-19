@@ -1,11 +1,11 @@
 import random
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, TemplateView
 
 from hyphaeAuth.forms import HyphaeUserCreationForm, HyphaeUserLoginForm
 from hyphaeAuth.models import HyphaeUser
@@ -67,6 +67,19 @@ class HyphaeLoginView(SuccessMessageMixin, LoginView):
         if 'next' in self.request.GET:
             redirect(self.request.GET.get('next'))
         return response
+
+
+class HyphaeLogoutView(TemplateView):
+    template_name = 'hyphaeAuth/authentication/logout.html'
+
+    def post(self, request):
+        logout(request)
+        return redirect(reverse_lazy("auth:login"))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['random_image'] = f'hyphae/images/random-bg/{random.randint(0, 47)}.jpg'
+        return context
 
 
 class ProfileView(DetailView):

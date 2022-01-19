@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static %}
+
+<div class="card formcard auth-card bg-wt-85 ele-3">
+    <h1 class="card-header">Log out your Hyphae account</h1>
+    <div class="card-body">
+        <form method="post" novalidate class="bg-wt medium-padding-container rounded">
+            <h1>Goodbye!</h1>
+            <p>We hope to see you again soon.</p>
+            <br>
+            {% csrf_token %}
+            <button type="submit" id="disconnectUser" name="disconnectUser" class="btn btn-primary" value="logout">
+                Se déconnecter
+            </button>
+        </form>
+    </div>
+</div>

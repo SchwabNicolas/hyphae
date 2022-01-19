@@ -99,10 +99,15 @@ class Literature(PolymorphicModel):
         ('JP', 'Japanese'),
         ('HU', 'Hungarian'),
         ('DA', 'Danish'),
+        ('CA', 'Catalan'),
+        ('GA', 'Galician'),
+        ('TU', 'Turkish'),
+        ('SE', 'Serbian'),
     ]
 
     FILE_STATUS = [
         ('PU', 'Published'),
+        ('PU', 'Reprint'),
         ('IP', 'In press'),
         ('PP', 'Pre-print'),
         ('UN', 'Unpublished'),
@@ -110,9 +115,9 @@ class Literature(PolymorphicModel):
 
     title = models.CharField(max_length=600, blank=True, null=True, verbose_name='Title')
     original_title = models.CharField(max_length=500, blank=True, null=True, verbose_name='Original title')
-    authors = models.CharField(max_length=1000, blank=True, null=True, verbose_name='Authors')
+    authors = models.TextField(max_length=2200, blank=True, null=True, verbose_name='Authors')
     doi = models.CharField(max_length=50, null=True, blank=True, verbose_name='DOI')
-    abstract = models.TextField(max_length=5000, null=True, blank=True, verbose_name='Abstract')
+    abstract = models.TextField(max_length=10000, null=True, blank=True, verbose_name='Abstract')
     keywords = models.CharField(max_length=500, null=True, blank=True, verbose_name='Keywords')
     language = models.CharField(max_length=200, verbose_name='Language', choices=LANGUAGES, default='EN')
     year_of_publication = models.IntegerField(blank=True, null=True, verbose_name='Year of publication')
@@ -186,6 +191,9 @@ class Literature(PolymorphicModel):
         authors_text = f'{self.authors[0:30]}…' if len(self.authors) > 30 else self.authors
 
         return f'{authors_text} {y_of_pub_text}{y_on_pub_text}.'
+
+    def get_citation(self, style):
+        return "PLACEHOLDER CITATION"
 
     def save(self, *args, **kwargs):
         if not self.vanity:
@@ -292,6 +300,9 @@ class Publication(Literature):
 class Thesis(Literature):
     university = models.CharField(max_length=100, blank=True, null=True)
 
+    def get_citation(self, style):
+        return "CITATION PLACEHOLDER"
+
 
 class Book(Literature):
     edition = models.CharField(max_length=20, blank=True, null=True, verbose_name="Edition")
@@ -300,6 +311,9 @@ class Book(Literature):
     isbn = models.CharField(max_length=25, blank=True, null=True, verbose_name='ISBN')
     publisher = models.CharField(max_length=50, blank=True, null=True, verbose_name='Publisher')
     location = models.CharField(max_length=50, blank=True, null=True, verbose_name='Location')
+
+    def get_citation(self, style):
+        return "CITATION PLACEHOLDER"
 
 
 class Series(Model):

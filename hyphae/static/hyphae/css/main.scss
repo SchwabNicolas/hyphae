@@ -20,6 +20,16 @@ body {
   min-width: fit-content;
 }
 
+/* Main nav */
+#mainNav {
+  background-color: $aquamarine-main;
+  color: $white;
+}
+
+#mainNav .nav-link {
+  color: $white;
+}
+
 .auth-card {
   min-width: 25rem;
   max-width: 25vw;
@@ -52,6 +62,23 @@ body {
   &:invalid {
     border-left: 4px solid $semantics-danger;
   }
+}
+
+.select2-container--default .select2-selection--single {
+  min-height: $input-height;
+  border-radius: 0 0 !important;
+  padding: $input-padding-y $input-padding-x !important;
+  font-family: $input-font-family !important;
+  @include font-size($input-font-size);
+  font-weight: $input-font-weight !important;
+  line-height: $input-line-height !important;
+  color: $input-color !important;
+  background-color: $input-bg !important;
+  background-clip: padding-box !important;
+  border: $input-border-width solid $input-border-color !important;
+  appearance: none !important;
+
+  @include transition($input-transition);
 }
 
 input:-webkit-autofill,
@@ -97,4 +124,75 @@ select:-webkit-autofill:focus {
   width: 12vw;
   border-radius: 100%;
   color: $white;
+}
+
+/* Taxa list */
+.tax-list-img {
+  width: 96px;
+  height: 96px;
+}
+
+.tax-list a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.tax-list .tax-list-taxon {
+  background-color: $gray-200;
+  border-radius: 3px;
+  height: 96px;
+}
+
+/* Taxa grid */
+.tax-grid .tax-card {
+  display: inline;
+  float: left;
+  width: 150px;
+  height: 205px;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.tax-grid .tax-grid-img {
+  display: block;
+  width: 150px;
+  height: 150px;
+}
+
+.tax-grid .tax-grid-no-img {
+  background-color: #1c1f23;
+  width: 150px;
+  height: 150px;
+}
+
+/* Taxon detail */
+.tax-img {
+  max-height: 640px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.tax-img-thumb {
+  display: inline;
+  width: 100px;
+  height: 100px;
+  border-radius: 3px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: filter 0.25s;
+
+  &:hover {
+    filter: brightness(1.25);
+  }
+}
+
+.tax-img-thumb.active {
+  border: 3px solid $primary-main;
+}
+
+.tax-img-leg {
+  background-color: attr(data-color color);
 }

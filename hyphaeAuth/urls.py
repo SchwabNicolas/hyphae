@@ -16,13 +16,14 @@ Including another URLconf
 
 from django.urls import path
 
-from hyphaeAuth.views import HyphaeSignUpView, HyphaeLoginView, ProfileView
+from hyphaeAuth.views import HyphaeSignUpView, HyphaeLoginView, ProfileView, HyphaeLogoutView
 
 app_name = 'authentication'
 
 urlpatterns = [
     path('signup/', HyphaeSignUpView.as_view(), name='signup'),
     path('login/', HyphaeLoginView.as_view(), name='login'),
+    path('logout/', HyphaeLogoutView.as_view(), name='logout'),
     path('profile/', ProfileView.as_view(), name='profile'),
     path('profile/<slug:vanity>/', ProfileView.as_view(), name='profile'),
 ]

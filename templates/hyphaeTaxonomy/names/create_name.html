@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="container">
-        <h1>Add a synonym</h1>
+        <h1>Add a name</h1>
         <form class="form" method="post">
             {{ form.errors }}
             {% csrf_token %}
@@ -29,6 +29,9 @@
                     </div>
                     <div class="col field">
                         {{ form.legitimacy|add_class:"form-control" }}
+                    </div>
+                    <div class="col field">
+                        {{ form.nomenclatural_comment|add_class:"form-control" }}
                     </div>
                 </div>
                 <div class="row">
@@ -60,7 +63,7 @@
                 </div>
             </fieldset>
 
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-primary">Create</button>
         </form>
     </div>
 {% endblock %}

@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="tax-list">
+    {% for taxon in children_taxa %}
+        <div class="mb-1 tax-list-taxon w-100">
+            <a class="w-100" href="{% url 'taxonomy:taxon-detail' slug=taxon.slug layout='list' %}">
+                {% if taxon.cover_illustration %}
+                    <img src="{{ taxon.cover_illustration.thumbnail.url }}" alt="" class="tax-list-img">
+                {% else %}
+                    <div class="tax-list-no-img"></div>
+                {% endif %}
+                <b><i>{{ taxon.current_name.name }}</i></b> {{ taxon.current_name.authors }} ({{ taxon.current_name.year_of_publication }})
+            </a>
+        </div>
+    {% endfor %}
+</div>

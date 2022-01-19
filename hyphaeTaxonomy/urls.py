@@ -13,20 +13,35 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.urls import path
 
-from hyphaeTaxonomy.views import TaxaListView, TaxonDetailView, NameCreateView, NamesListView, TaxonCreateView, IndexView
-
-app_name = 'taxonomy'
+from hyphaeTaxonomy.views import TaxaListView, TaxonDetailView, HigherTaxonCreateView, IndexView, SpecificTaxonCreateView, HigherTaxonAutocomplete, APIListTaxonChildren, SynonymCreateView, NameUpdateView, IllustrationCreateView, SpecificTaxonAutocomplete, TaxonChangeCurrentNameView, TaxonUpdateView
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('index/', IndexView.as_view(), name='index'),
 
     path('taxa/list', TaxaListView.as_view(), name='taxa-list'),
-    path('taxon/create', TaxonCreateView.as_view(), name='taxon-create'),
+    path('taxon/create-higher', HigherTaxonCreateView.as_view(), name='taxon-create-higher'),
+    path('taxon/create-species', SpecificTaxonCreateView.as_view(), name='taxon-create-species'),
+    path('taxon/<slug:slug>/<str:layout>', TaxonDetailView.as_view(), name='taxon-detail'),
     path('taxon/<slug:slug>', TaxonDetailView.as_view(), name='taxon-detail'),
 
-    path('names/list', NamesListView.as_view(), name='name-list'),
-    path('name/create', NameCreateView.as_view(), name='name-create'),
+    path('taxon/edit/<slug:slug>/', TaxonUpdateView.as_view(), name='taxon-update'),
+    path('taxon/edit/<slug:slug>/current-name', TaxonChangeCurrentNameView.as_view(), name='taxon-change-current-name'),
+    path('taxon/edit/<slug:slug>/basionym', TaxonDetailView.as_view(), name='taxon-edit-basionym'),
+    path('taxon/edit/<slug:slug>/create-synonym', SynonymCreateView.as_view(), name='taxon-create-synonym'),
+    path('name/edit/<int:pk>/edit-name', NameUpdateView.as_view(), name='taxon-update-synonym'),
+
+    path('name/edit/<int:pk>/edit-name', NameUpdateView.as_view(), name='name-edit'),
+
+    path('illustration/create', IllustrationCreateView.as_view(), name='illustration-create'),
+
+    url(r'^higher-taxon-autocomplete/$', HigherTaxonAutocomplete.as_view(), name='higher-taxon-autocomplete'),
+    url(r'^specific-taxon-autocomplete/$', SpecificTaxonAutocomplete.as_view(), name='specific-taxon-autocomplete'),
+
+    # API
+    path('api/list-taxon-children/', APIListTaxonChildren.as_view()),
 ]
+app_name = 'taxonomy'

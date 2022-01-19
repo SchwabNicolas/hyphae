@@ -9,7 +9,7 @@
 
 {% block content %}
     <div class="container">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="non-field-errors">
                 {{ form.non_field_errors }}
@@ -28,12 +28,15 @@
                 </div>
             </div>
 
-            <label class="text-size-4 mb-2">Legend</label>
-            <div class="row mb-2">
-                <div class="col">
-                    {{ form.legend|add_class:"form-control" }}
+            <div class="field mb-3">
+                <div class="text-size-1">
+                    {{ form.license.label_tag }}
                 </div>
+                {{ form.license|add_class:"form-control" }}
             </div>
+            {% for error in form.license.errors %}
+                <small class="form-text text-danger">{{ error }}</small>
+            {% endfor %}
 
             <label class="text-size-4 mb-2">Author</label>
             <div class="row mb-2">
@@ -49,7 +52,45 @@
                 </div>
             </div>
 
+            <label class="text-size-4 mb-2">Legend</label>
+            <div class="row mb-2">
+                <div class="col">
+                    {{ form.legend|add_class:"form-control" }}
+                </div>
+            </div>
+
+            <label class="text-size-4 mb-2">Location</label>
+            <div class="row mb-2">
+                <div class="col">
+                    {{ form.location|add_class:"form-control" }}
+                </div>
+            </div>
+
+            <label class="text-size-4 mb-2">Specimen</label>
+            <div class="row mb-2">
+                <div class="col">
+                    {{ form.specimen|add_class:"form-control" }}
+                </div>
+            </div>
+
+            <label class="text-size-4 mb-2">Source of the illustration</label>
+            <div class="row mb-2">
+                <div class="col">
+                    {{ form.source|add_class:"form-control" }}
+                </div>
+            </div>
+
+            <label class="text-size-4 mb-2">Illustration type</label>
+            <div class="row mb-2">
+                <div class="col">
+                    {{ form.illustration_type|add_class:"form-control" }}
+                </div>
+            </div>
+
+            {{ form.errors }}
+
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
     </div>
+    {{ form.media }}
 {% endblock %}

@@ -121,7 +121,10 @@
     </div>
     <div class="row">
         <div class="col">
-            {{ form.doi|add_class:"form-control" }}
+            <div class="input-group">
+                <span class="input-group-text" id="doi-addon">https://doi.org/</span>
+                {{ form.doi|add_class:"form-control"|attr:"aria-describedby:doi-addon" }}
+            </div>
         </div>
         <div class="col">
             {{ form.isbn|add_class:"form-control" }}

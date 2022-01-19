@@ -1,16 +1,26 @@
 /* Variables */
 
 /*
-font-family: 'Noto Sans', sans-serif;
-font-family: 'Noto Sans JP', sans-serif;
-font-family: 'Overpass Mono', sans-serif;
-font-family: 'Roboto', sans-serif;
+   font-family: 'Merriweather', serif;
+   font-family: 'Merriweather Sans', sans-serif;
 */
 @use "sass:map";
 
+$dark-main: #161616;
+
+$light-main: #FFFFFF;
+
+$aquamarine-main: #49BEAA;
+
+$primary-light: $aquamarine-main;
+$primary-main: darken($aquamarine-main, 20%);
+$primary-dark: darken($aquamarine-main, 40%);
+
+/*
 $primary-dark: #153630;
 $primary-main: #2F756A;
 $primary-light: #4EC2AE;
+*/
 
 $secondary-dark: #94514A;
 $secondary-main: #D3746A;
@@ -25,9 +35,9 @@ $white: #FFFFFF;
 $black: #000000;
 
 $primary-hues: (
-        "pri-l": $primary-light,
-        "pri-m": $primary-main,
-        "pri-d": $primary-dark,
+        "pri-l": $aquamarine-main,
+        "pri-m": darken($aquamarine-main, 15%),
+        "pri-d": darken($aquamarine-main, 30%),
 );
 
 $secondary-hues: (
@@ -52,8 +62,8 @@ $black-white: (
 
 $colors: map.merge($palette, $semantics);
 
-$sans-serif: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-$display: 'IBM Plex Serif', "Palatino Linotype", "Book Antiqua", Palatino, serif;
+$sans-serif: 'Merriweather Sans', Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$display: 'Merriweather', "Palatino Linotype", "Book Antiqua", Palatino, serif;
 $body: 'Roboto', 'Helvetica', "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 $monospace: 'Overpass Mono', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 
@@ -67,3 +77,5 @@ $border-radius-sm: .2rem;
 
 $elevation-levels-number: 6;
 $elevation-step: 3px;
+
+$enable-responsive-font-sizes: true;

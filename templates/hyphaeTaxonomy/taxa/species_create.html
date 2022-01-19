@@ -9,7 +9,6 @@
 
 {% block content %}
     <div class="container">
-        <h1>Add a taxon</h1>
         <form method="post">
             {% csrf_token %}
             <div class="non-field-errors">
@@ -24,12 +23,6 @@
 
             <form class="form">
                 <fieldset id="taxonFieldset">
-                    <label class="text-size-4 mb-2">Rank</label>
-                    <div class="row mb-2">
-                        <div class="col">
-                            {{ form.rank|add_class:"form-control" }}
-                        </div>
-                    </div>
                     <label class="text-size-4 mb-2">Parent</label>
                     <div class="row mb-2">
                         <div class="col">
@@ -49,7 +42,7 @@
                         </div>
                         <div class="col field">
                             <div class="input-group">
-                                <span class="input-group-text" id="doi-addon">#</span>
+                                <span class="input-group-text" id="icn-id-addon">#</span>
                                 {{ cn_form.icn_identifier|add_class:"form-control" }}
                             </div>
                         </div>
@@ -82,13 +75,6 @@
                             {{ cn_form.year_on_publication|add_class:"form-control" }}
                         </div>
                     </div>
-                    <div class="row">
-                        {% for field, errors in cn_form.errors.items %}
-                            {% for error in errors %}
-                                <small class="form-text text-danger">{{ error }}</small>
-                            {% endfor %}
-                        {% endfor %}
-                    </div>
                 </fieldset>
 
                 <label class="text-size-4 mb-2 mt-4">Basionym</label>
@@ -103,6 +89,12 @@
                         </div>
                         <div class="col field">
                             {{ basionym_form.authors|add_class:"form-control" }}
+                        </div>
+                        <div class="col field">
+                            <div class="input-group">
+                                <span class="input-group-text" id="icn-id-addon">#</span>
+                                {{ cn_form.icn_identifier|add_class:"form-control" }}
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -133,16 +125,18 @@
                             {{ basionym_form.year_on_publication|add_class:"form-control" }}
                         </div>
                     </div>
-                    <div class="row">
-                        {% for field, errors in basionym_form.errors.items %}
-                            {% for error in errors %}
-                                <small class="form-text text-danger">{{ error }}</small>
-                            {% endfor %}
-                        {% endfor %}
+                </fieldset>
+
+                <label class="text-size-4 mb-2">Description</label>
+                <fieldset id="descriptionFieldset">
+                    <div class="row mb-2">
+                        <div class="col field">
+                            {{ form.lichenization|add_class:"form-control" }}
+                        </div>
                     </div>
                 </fieldset>
 
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">Create</button>
             </form>
         </form>
     </div>
